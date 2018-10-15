@@ -14,7 +14,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String scheme = "ens://eoseosbank12";
-        EnsOptions ensOptions = EnsOptions.getOptions().setEnsScheme(scheme);
+        EnsOptions ensOptions = EnsOptions.getOptions()
+                .setEnsScheme(scheme)
+                .setEnsUrl("")
+                .setOkHttpClient(null);
         Ens.getEnsUrl(ensOptions, new EnsVerify() {
             @Override
             public void call(String ensInfo) {
