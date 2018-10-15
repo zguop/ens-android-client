@@ -28,7 +28,7 @@ public class Ens {
 
     public static void getEnsUrl(EnsOptions ensOptions, final EnsVerify ensVerify) {
         if (ensOptions == null || ensVerify == null) {
-            throw new NullPointerException("ensScheme is null or ensVerify is null");
+            throw new NullPointerException("ensOptions is null or ensVerify is null");
         }
         Uri parse = Uri.parse(ensOptions.getEnsScheme());
         String scheme = parse.getScheme();
