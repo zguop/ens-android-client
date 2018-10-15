@@ -11,6 +11,7 @@ dependencies{
 ```
 
 ```groovy
+String scheme = "ens://eoseosbank12";
 EnsOptions ensOptions = EnsOptions.getOptions()
             .setEnsScheme(scheme)
             .setEnsUrl("")
