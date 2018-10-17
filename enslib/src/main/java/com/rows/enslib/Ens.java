@@ -41,12 +41,11 @@ public class Ens {
             ensVerify.error(new Throwable("ensScheme the path address is not correct"));
             return;
         }
-        String ensUrl = ensOptions.getEnsUrl();
-        if (TextUtils.isEmpty(ensUrl)) {
+        String ensUrlHost = ensOptions.getEnsUrlHost();
+        if (TextUtils.isEmpty(ensUrlHost)) {
             ensVerify.error(new Throwable("ensUrl the path address is not correct"));
             return;
         }
-
         //去获取地址
         JSONObject jsonObject = new JSONObject();
         try {
@@ -69,7 +68,7 @@ public class Ens {
         String json = jsonObject.toString();
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
-                .url(ensUrl)
+                .url(ensUrlHost + "/v1/chain/get_table_rows")
                 .post(body)
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {

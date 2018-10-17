@@ -10,7 +10,7 @@ public class EnsOptions {
 
     private String ensScheme;
 
-    private String ensUrl;
+    private String ensUrlHost;
 
     private OkHttpClient okHttpClient;
 
@@ -31,13 +31,12 @@ public class EnsOptions {
         return this;
     }
 
-    public String getEnsUrl() {
-        return ensUrl;
+    public String getEnsUrlHost() {
+        return ensUrlHost;
     }
 
-    public EnsOptions setEnsUrl(String ensUrl) {
-        this.ensUrl = ensUrl;
-        return this;
+    public void setEnsUrlHost(String ensUrlHost) {
+        this.ensUrlHost = ensUrlHost;
     }
 
     public OkHttpClient getOkHttpClient() {
