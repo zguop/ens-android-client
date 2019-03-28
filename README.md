@@ -6,7 +6,7 @@
 
 ```groovy
 dependencies{
-    compile 'com.rows.enslib:enslib:0.1.5'  //最新版本
+    compile 'com.rows.enslib:enslib:0.1.6'  //最新版本
 }
 ```
 

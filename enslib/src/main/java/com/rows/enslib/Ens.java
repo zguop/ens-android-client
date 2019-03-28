@@ -79,27 +79,30 @@ public class Ens {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    ResponseBody responseBody = response.body();
-                    if (responseBody != null && responseBody.string() != null) {
-                        String string = responseBody.string();
-                        try {
-                            JSONObject resultJson = new JSONObject(string);
-                            JSONArray rows = resultJson.getJSONArray("rows");
-                            if(rows != null && rows.length() > 0){
-                                String dapp = rows.getJSONObject(0).getString("dapp");
-                                ensVerify.call(dapp);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            ensVerify.error(e);
-                        }
-
-                    }else {
-                        ensVerify.error(new Throwable("body is null"));
-                    }
-                }else {
+                if (!response.isSuccessful()) {
                     ensVerify.error(new Throwable("Request unsuccessful"));
+                    return;
+                }
+                ResponseBody responseBody = response.body();
+                if (responseBody == null) {
+                    ensVerify.error(new Throwable("responseBody is null"));
+                    return;
+                }
+                String string = responseBody.string();
+                if (TextUtils.isEmpty(string)) {
+                    ensVerify.error(new Throwable("responseBody string is null"));
+                    return;
+                }
+                try {
+                    JSONObject resultJson = new JSONObject(string);
+                    JSONArray rows = resultJson.getJSONArray("rows");
+                    if (rows != null && rows.length() > 0) {
+                        String dapp = rows.getJSONObject(0).getString("dapp");
+                        ensVerify.call(dapp);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    ensVerify.error(e);
                 }
             }
         });
